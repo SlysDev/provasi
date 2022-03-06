@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    --darkGray: #1a1a1a;
+}
+
+body {
+    background-color: var(--darkGray);
+}
+
+#main-container {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+
+nav {
+    padding: 2rem;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+}
