@@ -7,18 +7,51 @@
 
 body {
     background-color: var(--darkGray);
+    height: 100vh;
+}
+
+#content {
+    height: 100%;
 }
 
 #main-container {
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
+    height: 100%;
 }
 
-nav {
-    padding: 2rem;
+.morning {
+    background: linear-gradient(
+        129deg,
+        rgba(253, 29, 29, 1) 0%,
+        rgba(252, 176, 69, 1) 100%
+    );
 }
 
-.nav-left,
-.nav-right {
-    display: flex;
+.morning > * {
+    background-color: rgba(253, 29, 1, 100%);
+}
+
+.afternoon {
+    background: linear-gradient(
+        129deg,
+        rgba(29, 177, 253, 1) 0%,
+        rgba(218, 252, 69, 1) 100%
+    );
+}
+
+.afternoon > * {
+    background-color: rgba(29, 177, 253, 1) 0%;
+}
+
+.evening {
+    background: linear-gradient(
+        129deg,
+        rgba(144, 144, 144, 1) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+.evening > * {
+    background-color: rgba(144, 144, 144, 1) 100%;
 }
