@@ -1,2 +1,4 @@
-import homePage from "./modules/homepage.js";
-import timeManager from "./modules/timemanager.js";
+import projectManager from "./modules/project-manager.js";
+document.addEventListener("DOMContentLoaded", function () {
+    projectManager.openProject({ title: "Test Project" });
+});
