@@ -210,6 +210,13 @@ button:hover {
     transition: 0.5s ease;
 }
 
+.todo-info-container {
+    display: flex;
+    gap: 5vh;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Media Queries */
 @media all and (max-device-width: 720px) {
     body {

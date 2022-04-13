@@ -57,12 +57,17 @@ let pageDom = (function () {
             todoInfoContainer.classList.add("todo-info-container");
             let todoProjectInfo = document.createElement("p");
             console.log(projectManager.currentProject);
-            todoProjectInfo.textContent = projectManager.currentProject.title;
+            todoProjectInfo.textContent = `Project: ${projectManager.currentProject.title}`;
             let todoDateInfo = document.createElement("p");
-            todoDateInfo.textContent = `Due: ${todo.dueDate}`;
+            if (todo.dueDate == new Date().toLocaleDateString()) {
+                todoDateInfo.textContent = "Due: Today";
+            } else {
+                todoDateInfo.textContent = `Due: ${todo.dueDate}`;
+            }
             let todoPriorityInfo = document.createElement("p");
             todoPriorityInfo.textContent = todo.priority;
             todoInfoContainer.append(
+                todoExpandedTitle,
                 todoProjectInfo,
                 todoDateInfo,
                 todoPriorityInfo
