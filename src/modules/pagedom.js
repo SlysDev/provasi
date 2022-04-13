@@ -9,11 +9,7 @@ let pageDom = (function () {
 
     let projectMenuDom = function () {
         let homeTitle = document.createElement("h1");
-        if (projectManager.projectList.length == 0) {
-            homeTitle.textContent = "Let's start with a project";
-        } else {
-            homeTitle.textContent = "Choose a project:";
-        }
+        homeTitle.textContent = "Choose a project:";
         let projectCreateContainer = document.createElement("div");
         projectCreateContainer.classList.add("project-create-container");
         let projectCreateButton = document.createElement("button");
@@ -63,7 +59,7 @@ let pageDom = (function () {
             console.log(projectManager.currentProject);
             todoProjectInfo.textContent = projectManager.currentProject.title;
             let todoDateInfo = document.createElement("p");
-            todoDateInfo.textContent = todo.dueDate;
+            todoDateInfo.textContent = `Due: ${todo.dueDate}`;
             let todoPriorityInfo = document.createElement("p");
             todoPriorityInfo.textContent = todo.priority;
             todoInfoContainer.append(
