@@ -60,6 +60,7 @@ let pageDom = (function () {
             let todoInfoContainer = document.createElement("div");
             todoInfoContainer.classList.add("todo-info-container");
             let todoProjectInfo = document.createElement("p");
+            console.log(projectManager.currentProject);
             todoProjectInfo.textContent = projectManager.currentProject.title;
             let todoDateInfo = document.createElement("p");
             todoDateInfo.textContent = todo.dueDate;
@@ -134,6 +135,7 @@ let pageDom = (function () {
                 rightButtonsContainer
             );
             expandButton.addEventListener("click", function () {
+                console.log(projectManager.currentProject);
                 expandTodo(todo);
             });
             todo.dom = todoContainer;
