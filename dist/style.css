@@ -18,6 +18,8 @@ body {
 
 button {
     display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem 2rem;
     border-radius: 15px;
     transition: 0.5s ease;
@@ -77,11 +79,19 @@ button:hover {
 }
 
 .invisible {
+    display: none;
     width: 0;
     flex: 0 !important;
     border: none !important;
     padding: 0 !important;
     opacity: 0 !important;
+    transition: 0.5s ease;
+}
+
+.visible {
+    width: initial;
+    flex: initial;
+    padding: initial;
     transition: 0.5s ease;
 }
 
@@ -156,6 +166,19 @@ button:hover {
     transition: 0.5s ease;
 }
 
+.todo-container input {
+    padding: 1rem;
+    border: none;
+    caret-color: white;
+    color: black;
+    background-color: rgba(255, 255, 255, 80%);
+    border-radius: 15px;
+}
+
+.todo-container input:hover {
+    opacity: .75;
+}
+
 .todo-create-container > input {
     flex: 1;
     background-color: transparent;
@@ -163,6 +186,15 @@ button:hover {
     padding: 1rem;
     caret-color: white;
     color: white;
+}
+
+.todo-create-container > input:focus {
+    outline: none;
+    border: 3px solid white;
+}
+
+.todo-create-container > input:hover {
+    opacity: 0.75;
 }
 
 .project-create-container > input {

@@ -26,7 +26,7 @@ let pageDom = (function () {
         projectCreateContainer.append(projectCreateInput, projectCreateButton);
         projectCreateInput.addEventListener("focusin", function () {
             document.addEventListener("keydown", function (key) {
-                if (key.code === "Enter") {
+                if (key.code === "Enter" && projectCreateInput.value != "") {
                     projectManager.createProject(projectCreateInput.value);
                     projectCreateInput.value = "";
                 }
@@ -61,6 +61,8 @@ let pageDom = (function () {
             let todoDateInfo = document.createElement("p");
             if (todo.dueDate == new Date().toLocaleDateString()) {
                 todoDateInfo.textContent = "Due: Today";
+            } else if (todo.dueDate == new Date().toLocaleDateString() + 1) {
+                todoDateInfo.textContent = "Due: Tomorrow";
             } else {
                 todoDateInfo.textContent = `Due: ${todo.dueDate}`;
             }
@@ -105,28 +107,55 @@ let pageDom = (function () {
             deleteButton.classList.add("icon-btn");
             let dateButton = document.createElement("button");
             dateButton.classList.add("icon-btn");
+            if (todo.dueDate == new Date().toLocaleDateString()) {
+                dateButton.textContent = "Today";
+            } else {
+                dateButton.textContent = `${todo.dueDate}`;
+            }
             let dateInput = document.createElement("input");
+            dateInput.classList.add("invisible");
             dateInput.setAttribute("type", "date");
             dateButton.addEventListener("click", function () {
                 dateButton.classList.add("invisible");
+                dateInput.classList.add("visible");
+                dateInput.classList.remove("invisible");
+                dateInput.focus();
+            });
+            dateInput.addEventListener("focusin", function () {
+                document.addEventListener("keydown", function (key) {
+                    if (key.code === "Enter" && dateInput.value != "") {
+                        console.log(dateInput.value);
+                        todo.dueDate = new Date(
+                            dateInput.value
+                        ).toLocaleDateString();
+                        dateInput.classList.add("invisible");
+                        dateButton.classList.add("visible");
+                        dateButton.classList.remove("invisible");
+                        loadTodos(projectManager.currentProject);
+                    }
+                });
+            });
+            dateInput.addEventListener("focusout", function () {
+                dateInput.classList.add("invisible");
+                dateInput.classList.remove("visible");
+                dateButton.classList.add("visible");
+                dateButton.classList.remove("invisible");
             });
             let expandButton = document.createElement("button");
             expandButton.classList.add("icon-btn");
             let checkIcon = document.createElement("img");
             checkIcon.setAttribute("src", "../assets/incomplete-icon.svg");
-            let dateIcon = document.createElement("img");
-            dateIcon.setAttribute("src", "../assets/date-icon.svg");
             let deleteIcon = document.createElement("img");
             deleteIcon.setAttribute("src", "../assets/trash-icon.svg");
             let expandIcon = document.createElement("img");
             expandIcon.setAttribute("src", "../assets/expand-icon.svg");
             deleteButton.append(deleteIcon);
             checkButton.append(checkIcon);
-            dateButton.append(dateIcon);
             expandButton.append(expandIcon);
             leftButtonsContainer.append(checkButton);
             rightButtonsContainer.append(
                 dateButton,
+                dateInput,
                 expandButton,
                 deleteButton
             );
@@ -231,7 +260,8 @@ let pageDom = (function () {
             });
             todoCreateInput.addEventListener("focusin", function () {
                 document.addEventListener("keydown", function (key) {
-                    if (key.code === "Enter") {
+                    if (key.code === "Enter" && todoCreateInput.value != "") {
+                        console.log(todoCreateInput.value);
                         todoManager.createTodo(todoCreateInput.value);
                         todoCreateInput.value = "";
                     }
@@ -240,6 +270,7 @@ let pageDom = (function () {
             todoCreateInput.addEventListener("focusout", function () {
                 todoCreateInput.classList.add("invisible");
                 todoCreateButton.classList.remove("invisible");
+                todoCreateInput.value = "";
             });
             todoCreateContainer.append(todoCreateInput, todoCreateButton);
             todoDom.loadTodos(projectManager.currentProject);

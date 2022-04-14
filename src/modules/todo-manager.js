@@ -15,6 +15,7 @@ let todoManager = (function () {
         }
         if (todo.dueDate === undefined) {
             todo.dueDate = new Date().toLocaleDateString();
+            console.log(todo.dueDate);
         }
         projectManager.currentProject.todoList.push(todo);
         sortByDate();
